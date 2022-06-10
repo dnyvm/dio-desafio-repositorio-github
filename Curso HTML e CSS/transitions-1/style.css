@@ -1,0 +1,82 @@
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 500px;
+    height: 400px;
+    background: url('./woman.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: grayscale(0.7);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* foi colocado para poder mexer com o pseudoelemento do card wrapper pra fazer o efeito de borda que vai expandir na tela */
+}
+
+ /* o pseudoelemento adiciona um elemento antes ou depois do que for selecionado e podemos inserir um content pra ele, tamanho, position */
+
+.card-wrapper::before {
+    content: '';
+    position: absolute; /* é pra ele ficar absoluto ao elemento pai, nesse caso o card-wrapper */
+    height: 100px;
+    width: 100px;
+    display: block;
+    border: 1px solid #fff;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-wrapper h2 {
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 4px; /* espaço em cada letra */
+    margin: 0;
+    transition: 0.3s;
+}
+
+.card-wrapper p {
+    font-size: 0;
+    visibility: hidden;
+    opacity: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.card:hover {
+    filter: unset;
+}
+
+.card:hover > .card-wrapper::before { /* o sinal maior que > para selecionar o filho*/
+    height: 300px;
+    width: 400px;
+    opacity: 1;
+}
+
+.card:hover > .card-wrapper p {
+    opacity: 1;
+    visibility: visible;
+    font-size: 14px;
+}

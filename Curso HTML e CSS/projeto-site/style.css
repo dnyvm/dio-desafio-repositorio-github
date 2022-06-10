@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Quicksand:wght@500&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2, a {
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* HEADER */
+
+.header-wrapper {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(-45deg, #6c2b91, #9b5aa7, #e2879b);
+    background-size: 400% 400%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: backgroundTransition 8s ease-in-out infinite;
+}
+
+.social-media {
+    margin-top: 1rem;
+    display: flex;
+}
+
+.social-media a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 1rem 3rem;
+    margin: 8px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    min-width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s cubic-bezier(0.55, 0.725, 0.675, 0.97);
+}
+
+a:hover {
+    color: #9b5aa7;
+    background-color: #ffffff;
+}
+
+@keyframes backgroundTransition {
+    0% {
+        background-position: 0% 80%;
+    }
+    50% {
+        background-position: 80% 100%;
+    }
+    100% {
+        background-position: 0% 90%;
+    }
+}
+
+/* MENU HAMBURGUER */
+
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999; /* serve para ele ficar na frente de tudo. o z-index negativo deixa por trás e o positivo deixa na frente, a cada vez que vc coloca um numero maior do que o elemento anterior, ele vai ficando na frente */
+    transition: 400ms ease-in-out 0s;
+}
+
+.checkbox .trace {
+    width: 45px;
+    height: 4px;
+    background-color: #ffffff;
+    position: absolute;
+    border-radius: 4px;
+    transition: 0.5s ease-in-out;
+}
+
+.checkbox .trace:nth-child(1) {
+    top: 25px;
+    transform: rotate(0);
+}
+
+.checkbox .trace:nth-child(2) {
+    top: 37px;
+    transform: rotate(0);
+}
+
+.checkbox .trace:nth-child(3) {
+    top: 49px;
+    transform: rotate(0);
+}
+
+#toggle {
+    display: none;
+}
+
+/* MENU LINKS */
+
+.menu {
+    position: absolute;
+    top: 22px;
+    right: 33px;
+    background-color: transparent;
+    height: 33px;
+    width: 33px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 0px #ffffff;
+    z-index: -1;
+    transition: 400ms ease-in-out 0s;
+}
+
+.menu-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: 400ms ease-in-out 0.1s;
+}
+
+.menu-items ul {
+    list-style-type: none;
+}
+
+.menu-items ul li a {
+    margin: 10px 0;
+    color: #9b5aa7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 27px;
+}
+
+/* ANIMAÇÃO MENU */
+
+#toggle:checked + .checkbox .trace:nth-child(1) {
+    transform: rotate(45deg);
+    background-color: #9b5aa7;
+    top: 37px;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(2) {
+    transform: translateX(-30px);
+    width: 5px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(3) {
+    transform: rotate(-45deg);
+    background-color: #9b5aa7;
+    top: 38px;
+}
+
+#toggle:checked + .checkbox {
+    background-color: #ffffff;
+}
+
+#toggle:checked ~ .menu {
+    box-shadow: 0px 0px 0px 100vmax #ffffff;
+    z-index: 1;
+}
+
+#toggle:checked ~ .menu-items {
+    visibility: visible;
+    opacity: 1;
+}

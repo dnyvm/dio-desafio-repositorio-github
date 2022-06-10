@@ -1,0 +1,68 @@
+* { /* o asterisco vai aplicar para todos os itens/selecionar todos os elementos (não é recomendado para projetos grandes) */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    background-color: #fcb1ba;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    position: relative; /* ele tem o relative para conseguirmos deixar os tracinhos absolutos à ele*/
+    cursor: pointer;
+}
+
+.checkbox .trace {
+    width: 90px;
+    height: 8px;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 4px;
+    transition: 0.5s ease-in-out; /* o que acontece nesses casos são as curvas de animação. o ease-in começa lento e termina rápido. o ease-out começa rápido e termina lento. o ease-in-out começa e acaba lento */
+}
+
+.checkbox .trace:nth-child(1) {
+    top: 26px;
+    transform: rotate(0);
+}
+
+.checkbox .trace:nth-child(2) {
+    top: 46px;
+    transform: rotate(0);
+}
+
+.checkbox .trace:nth-child(3) {
+    top: 66px;
+    transform: rotate(0);
+}
+
+#toggle {
+    display: none;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(1) { /* usamos o + (seletor) para selecionar o filho que está embaixo dele*/
+    transform: rotate(45deg);
+    top: 47px;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(2) { /* usamos o + (seletor) para selecionar o filho que está embaixo dele*/
+    transform: translateX(-30px);
+    width: 20px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(3) { /* usamos o + (seletor) para selecionar o filho que está embaixo dele*/
+    transform: rotate(-45deg); /* deg = graus */
+    top: 48px;
+}
